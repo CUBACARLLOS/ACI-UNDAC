@@ -36,12 +36,15 @@ exports.handler = async function(event) {
 
     const data = await response.json();
 
+    console.log(data);
+
     return {
         statusCode: 200,
 
         body: JSON.stringify({
             reply:
-            data.choices[0].message.content
+            data.choices?.[0]?.message?.content ||
+            "No se obtuvo respuesta de OpenAI."
         })
     };
 };
